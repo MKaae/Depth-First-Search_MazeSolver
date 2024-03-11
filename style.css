@@ -1,0 +1,41 @@
+--ROW
+body{
+    font-family: sans-serif;
+}
+.wall-north {
+    border-top: 2px solid black;
+}
+
+.wall-east {
+    border-right: 2px solid black;
+}
+
+.wall-south {
+    border-bottom: 2px solid black;
+}
+
+.wall-west {
+    border-left: 2px solid black;
+}
+.cell{
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color: rgb(110, 117, 129);
+}
+#board{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid black;
+    grid-template-columns: repeat(var(--ROW), 60px);
+}
+#board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+h1 {
+    text-align: center;
+    color: rgb(120, 253, 37);
+}
