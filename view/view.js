@@ -24,6 +24,7 @@ function uploadMaze(){
     document.getElementById('input-field').classList.add('hidden');
     document.getElementById('path-show').classList.remove('hidden');
     document.getElementById('path-opt').classList.remove('hidden');
+    document.getElementById('board').classList.add('border-board');
     const model = createMaze(JSON.parse(JsonText));
     updateView(model);
     document.getElementById('start-solve').addEventListener('click', ()=> startSolve());
