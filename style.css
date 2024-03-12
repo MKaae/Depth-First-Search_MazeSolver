@@ -17,17 +17,23 @@ body{
 .wall-west {
     border-left: 2px solid black;
 }
+.cell{
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color: rgb(110, 117, 129);
+}
 .visited {
     width: 60px;
     height: 60px;
     box-sizing: border-box;
     background-color:rgb(120, 253, 37);
 }
-.cell{
+.optimal {
     width: 60px;
     height: 60px;
     box-sizing: border-box;
-    background-color: rgb(110, 117, 129);
+    background-color:red;
 }
 #board{
     display: grid;

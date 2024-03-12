@@ -42,6 +42,22 @@ export function updateView(model){;
         }
     }
 }
-export function visualizePath(nodes){
-    console.log(nodes)
+export function visualizePath(nodes, cols){
+    let remainingNodes = nodes;
+    remainingNodes.reverse();
+    const cells = document.getElementById("board").getElementsByClassName("cell");
+
+    function processNextNode() {
+        if (remainingNodes.length !== 0) {
+            const currentNode = remainingNodes.pop();
+            const row = currentNode.row;
+            const col = currentNode.col;
+            const index = row * cols + col;
+            const cell = cells[index];
+            cell.classList.add('visited');
+
+            setTimeout(processNextNode, 300);
+        }
+    }
+    processNextNode();
 }

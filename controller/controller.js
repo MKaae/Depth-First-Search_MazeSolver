@@ -7,7 +7,6 @@ export function startSolve(){
     const board = getModel();
     const startNode = board.start;
     const goalNode = board.goal;
-    
     let unvisitedNodes = [];
     let visitedNodesInOrder = [];
 
@@ -15,14 +14,14 @@ export function startSolve(){
 
     while(unvisitedNodes.length !== 0){
         let closestNode = unvisitedNodes.pop();
-
+        
         if(closestNode.isVisited) continue;
 
         visitedNodesInOrder.push(closestNode);
         closestNode.isVisited = true;
 
         if(closestNode.row === goalNode.row && closestNode.col === goalNode.col) {
-            return visualizePath(visitedNodesInOrder);
+            return visualizePath(visitedNodesInOrder, board.cols);
         }
 
         let unvisitedNeighbours = getUnvisitedNeighbours(closestNode, board);
@@ -31,7 +30,7 @@ export function startSolve(){
             unvisitedNodes.push(unvisitedNeighbour);
         }
     }
-    return visualizePath(visitedNodesInOrder);
+    return visualizePath(visitedNodesInOrder, board.cols);
 }
 
 function getUnvisitedNeighbours(node, board){
@@ -44,16 +43,4 @@ function getUnvisitedNeighbours(node, board){
     if(col !== 0 && !board.maze[row][col].west) neighbours.push(board.maze[row][col - 1]);
 
     return neighbours.filter((neighbour) => !neighbour.isVisited && !neighbour.isWall);
-}
-
-export function getOptimalPath(finishNode){
-    let nodesInShortestPathOrder = [];
-    let currentNode = finishNode;
-
-    while(currentNode !== null){
-        nodesInShortestPathOrder.unshift(currentNode);
-        currentNode = currentNode.previousNode;
-    }
-
-    return nodesInShortestPathOrder;
 }
