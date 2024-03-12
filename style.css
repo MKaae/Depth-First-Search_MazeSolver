@@ -39,7 +39,6 @@ body{
     display: grid;
     justify-content: center;
     align-items: center;
-    border: 5px solid black;
     grid-template-columns: repeat(var(--ROW), 60px);
 }
 #board-container {
@@ -53,10 +52,48 @@ h1 {
 }
 button {
     color: rgb(120, 253, 37);
+    margin: 20px;
+    min-width: 200px;
+    text-align: center;
 }
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#show-path{
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color:rgb(120, 253, 37);
+}
+#show-optimal{
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color:red;
+}
+.paths {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+#buttons {
+    display:flex;
+    flex-direction: row;
+}
+.hidden {
+    display: none;
+}
+#path-show{
+    color: rgb(120, 253, 37);
+}
+#path-opt{
+    color: red;
+}
+.border-board {
+    border: 5px solid black;
 }

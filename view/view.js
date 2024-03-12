@@ -1,14 +1,28 @@
 "use-strict"
 
-renderView();
+buttonListeners();
 
 import { startSolve } from "../controller/controller.js";
 import { getMaze } from "../model/model.js"
 
+function buttonListeners(){
+    document.getElementById('upload-own').addEventListener('click', () => renderMaze())
+    document.getElementById('test-btn').addEventListener('click', () => renderView())
+}
+async function renderMaze(){
+    console.log("fart");
+}
 async function renderView(){
+    const start = document.getElementById('start-solve');
+    start.classList.remove('hidden');
+    document.getElementById('path-show').classList.remove('hidden');
+    document.getElementById('path-opt').classList.remove('hidden');
+    document.getElementById('upload-own').classList.add('hidden');
+    document.getElementById('test-btn').classList.add('hidden');
+    document.getElementById('board').classList.add('border-board');
     const model = await getMaze();
     updateView(model);
-    document.getElementById('start-solve').addEventListener('click', () => startSolve());
+    start.addEventListener('click', () => startSolve());
 }
 export function updateView(model){;
     document.documentElement.style.setProperty('--ROW', model.rows);
@@ -42,11 +56,10 @@ export function updateView(model){;
         }
     }
 }
-export function visualizePath(nodes, cols){
+export function visualizePath(nodes, cols, optimal){
     let remainingNodes = nodes;
     remainingNodes.reverse();
     const cells = document.getElementById("board").getElementsByClassName("cell");
-
     function processNextNode() {
         if (remainingNodes.length !== 0) {
             const currentNode = remainingNodes.pop();
@@ -57,7 +70,28 @@ export function visualizePath(nodes, cols){
             cell.classList.add('visited');
 
             setTimeout(processNextNode, 300);
+        } else {
+            showOptimalPath(cols, optimal);
         }
     }
     processNextNode();
+}
+function showOptimalPath(cols, optimal){
+    let optimalPath = optimal;
+    optimalPath.reverse();
+    const cells = document.getElementById("board").getElementsByClassName("cell");
+
+    function processNextNodeOptimal() {
+        if (optimalPath.length !== 0) {
+            const currentNode = optimalPath.pop();
+            const row = currentNode.row;
+            const col = currentNode.col;
+            const index = row * cols + col;
+            const cell = cells[index];
+            cell.classList.add('optimal');
+
+            setTimeout(processNextNodeOptimal, 300);
+        }
+    }
+    processNextNodeOptimal();
 }

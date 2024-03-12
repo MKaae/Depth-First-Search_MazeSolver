@@ -21,7 +21,8 @@ export function startSolve(){
         closestNode.isVisited = true;
 
         if(closestNode.row === goalNode.row && closestNode.col === goalNode.col) {
-            return visualizePath(visitedNodesInOrder, board.cols);
+            const optimalPath = calculateOptimalPath(visitedNodesInOrder[0], visitedNodesInOrder[visitedNodesInOrder.length-1]);
+            return visualizePath(visitedNodesInOrder, board.cols, optimalPath);
         }
 
         let unvisitedNeighbours = getUnvisitedNeighbours(closestNode, board);
@@ -43,4 +44,15 @@ function getUnvisitedNeighbours(node, board){
     if(col !== 0 && !board.maze[row][col].west) neighbours.push(board.maze[row][col - 1]);
 
     return neighbours.filter((neighbour) => !neighbour.isVisited && !neighbour.isWall);
+}
+
+function calculateOptimalPath(startNode, goalNode) {
+    let optimalPath = [];
+    let currentNode = goalNode;
+    while (currentNode !== null && currentNode !== startNode) {
+        optimalPath.unshift(currentNode); 
+        currentNode = currentNode.previousNode; 
+    }
+    optimalPath.unshift(startNode);
+    return optimalPath;
 }

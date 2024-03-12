@@ -10,9 +10,21 @@
 <body>
     <main>
         <h1>Welcome to the maze solver</h1>
-        <button id="start-solve">Start solve</button>
+        <div id="buttons">
+            <button id="upload-own">Upload MAZE</button>
+            <button id="test-btn">Use test file</button>
+            <button id="start-solve" class="hidden">Start solve</button>
+        </div>
         <div id="board-container">
+            <div id="path-show" class="paths hidden">
+                <div id="show-path"></div>
+                <p>This color shows first search</p>
+            </div>
             <div id="board"></div>
+            <div id="path-opt" class="paths hidden">
+                <div id="show-optimal"></div>
+                <p>This color shows optimal path</p>
+            </div>
         </div>
     </main>
     <script src="./view/view.js" type="module"></script>
