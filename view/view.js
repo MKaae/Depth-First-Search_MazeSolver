@@ -3,15 +3,32 @@
 buttonListeners();
 
 import { startSolve } from "../controller/controller.js";
-import { getMaze } from "../model/model.js"
+import { getMaze, createMaze } from "../model/model.js"
 
 function buttonListeners(){
     document.getElementById('upload-own').addEventListener('click', () => renderMaze())
     document.getElementById('test-btn').addEventListener('click', () => renderView())
 }
-async function renderMaze(){
-    console.log("fart");
+function renderMaze(){
+    document.getElementById('test-btn').classList.add('hidden');
+    document.getElementById('upload-own').classList.add('hidden');
+    document.getElementById('input-field').classList.remove('hidden');
+    const sendJsonBtn = document.getElementById('send-json');
+    sendJsonBtn.classList.remove('hidden');
+    sendJsonBtn.addEventListener('click', () => uploadMaze());
 }
+function uploadMaze(){
+    document.getElementById('send-json').classList.add('hidden');
+    document.getElementById('start-solve').classList.remove('hidden');
+    const JsonText = document.getElementById('input-field').value;
+    document.getElementById('input-field').classList.add('hidden');
+    document.getElementById('path-show').classList.remove('hidden');
+    document.getElementById('path-opt').classList.remove('hidden');
+    const model = createMaze(JSON.parse(JsonText));
+    updateView(model);
+    document.getElementById('start-solve').addEventListener('click', ()=> startSolve());
+}
+
 async function renderView(){
     const start = document.getElementById('start-solve');
     start.classList.remove('hidden');

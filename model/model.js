@@ -12,6 +12,10 @@ export async function getMaze(){
     }
     return model;
 }
+export function createMaze(json){
+    model = json;
+    return model;
+}
 export function getModel(){
     return model;
 }

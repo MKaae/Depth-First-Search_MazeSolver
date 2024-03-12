@@ -97,3 +97,7 @@ main {
 .border-board {
     border: 5px solid black;
 }
+#input-field {
+    width: 550px;
+    height: 600px;
+}
