@@ -1,16 +1,19 @@
 "use-strict"
 
-window.addEventListener("DOMContentLoaded", renderView);
+renderView();
 
+import { startSolve } from "../controller/controller.js";
 import { getMaze } from "../model/model.js"
 
 async function renderView(){
     const model = await getMaze();
     updateView(model);
+    document.getElementById('start-solve').addEventListener('click', () => startSolve());
 }
-function updateView(model){
+export function updateView(model){;
     document.documentElement.style.setProperty('--ROW', model.rows);
     const board = document.getElementById('board');
+    board.innerHTML = "";
     for(let i = 0; i < model.maze.length; i++){
         const row = model.maze[i];
         for(let j = 0; j < model.maze[i].length; j++){
@@ -38,4 +41,7 @@ function updateView(model){
             board.appendChild(cell);
         }
     }
+}
+export function visualizePath(nodes){
+    console.log(nodes)
 }

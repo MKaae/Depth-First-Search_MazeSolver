@@ -17,6 +17,12 @@ body{
 .wall-west {
     border-left: 2px solid black;
 }
+.visited {
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color:rgb(120, 253, 37);
+}
 .cell{
     width: 60px;
     height: 60px;
@@ -38,4 +44,13 @@ body{
 h1 {
     text-align: center;
     color: rgb(120, 253, 37);
+}
+button {
+    color: rgb(120, 253, 37);
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
