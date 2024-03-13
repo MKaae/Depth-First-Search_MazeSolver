@@ -88,10 +88,10 @@ main {
 .hidden {
     display: none;
 }
-#path-show{
+#first-path{
     color: rgb(120, 253, 37);
 }
-#path-opt{
+#optimal-path{
     color: red;
 }
 .border-board {
@@ -100,4 +100,31 @@ main {
 #input-field {
     width: 550px;
     height: 600px;
+}
+.start {
+    background-color: rgb(80, 37, 253);
+}
+.goal {
+    background-color: rgb(113, 27, 93);
+}
+#show-start {
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color: rgb(80, 37, 253);
+}
+#show-goal {
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color: rgb(113, 27, 93);
+}
+#start-show{
+    color: rgb(80, 37, 253);
+}
+#end-show{
+    color: rgb(113, 27, 93);
+}
+p {
+    background-color: black
 }

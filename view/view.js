@@ -27,7 +27,12 @@ function uploadMaze(){
     document.getElementById('board').classList.add('border-board');
     const model = createMaze(JSON.parse(JsonText));
     updateView(model);
-    document.getElementById('start-solve').addEventListener('click', ()=> startSolve());
+    const start = document.getElementById('start-solve');
+    const startSolveHandler = () => {
+        startSolve();
+        start.removeEventListener('click', startSolveHandler);
+    };
+    start.addEventListener('click', startSolveHandler);
 }
 
 async function renderView(){
@@ -40,7 +45,11 @@ async function renderView(){
     document.getElementById('board').classList.add('border-board');
     const model = await getMaze();
     updateView(model);
-    start.addEventListener('click', () => startSolve());
+    const startSolveHandler = () => {
+        startSolve();
+        start.removeEventListener('click', startSolveHandler);
+    };
+    start.addEventListener('click', startSolveHandler);
 }
 export function updateView(model){;
     document.documentElement.style.setProperty('--ROW', model.rows);
@@ -85,6 +94,12 @@ export function visualizePath(nodes, cols, optimal){
             const col = currentNode.col;
             const index = row * cols + col;
             const cell = cells[index];
+            if(cell.classList.contains('start')) {
+                cell.classList.remove('start');
+            }
+            if(cell.classList.contains('goal')) {
+                cell.classList.remove('goal');
+            }
             cell.classList.add('visited');
 
             setTimeout(processNextNode, 300);
